@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="Header">
+
+    <!-- Page Preloder -->
+    <div id="preloder_me">
+        <div class="loader_me"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper_me">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li><a href="#"><span class="icon_heart_alt"></span>
+                <div class="tip">2</div>
+            </a></li>
+            <li><a href="#"><span class="icon_bag_alt"></span>
+                <div class="tip">2</div>
+            </a></li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img th:src="@{/img/logo.png}" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+
+        <div class="offcanvas__auth">
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/register}">Register</a>
+
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header_me">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo_me">
+                        <a th:href="@{/home}"><img th:src="@{/img/logo.png}" alt="" style="width: 98px; height: 31px"></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu_me">
+                        <ul>
+                            <li class="" th:classappend="${flag_home == true ? 'active' : ''}"><a th:href="@{/home}">Home</a></li>
+                            <li th:classappend="${ flag_shop == true ? 'active' : ''}"><a th:href="@{/home/shop}">Product</a></li>
+                            <li><a th:href="@{/home/blog}">Blog</a></li>
+<!--                            <li><a href="#">Pages</a>-->
+<!--                                <ul class="dropdown">-->
+<!--                                    <li><a href="../../../../../ashion-master_template/ashion-master/product-details.html">Product Details</a></li>-->
+<!--                                    <li><a href="../../../../../ashion-master_template/ashion-master/shop-cart.html">Shop Cart</a></li>-->
+<!--                                    <li><a href="../../../../../ashion-master_template/ashion-master/checkout.html">Checkout</a></li>-->
+<!--                                    <li><a href="../../../../../ashion-master_template/ashion-master/blog-details.html">Blog Details</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+                            <li><a th:href="@{/home/contact}">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right_me">
+                        <div class="header__right__auth_me">
+                            <th:block th:unless="${session.username != null}">
+                                <a th:href="@{/login}">Login</a>
+                                <a th:href="@{/register}">Register</a>
+                            </th:block>
+                           <th:block th:if="${session.username != null }">
+                               <div class="btn_mes">
+                                   <button class="btn btn_me"><i class="fa-solid fa-user pl-2 ml-2" > <span th:text=" 'Hi , ' +${session.username}"></span></i></button>
+                                   <ul class="dropdown dropdown_me pl-0">
+                                       <li><a data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit Profile </a></li>
+                                       <li><a th:href="@{/change_pass}">Change Pass </a></li>
+                                       <th:block th:if="${session.role == true}">
+                                           <li><a th:href="@{/admin/home}">Administration</a></li>
+                                       </th:block>
+                                       <li><a th:href="@{/log_out}">Log Out </a></li>
+                                   </ul>
+                               </div>
+                           </th:block>
+                        </div>
+                        <ul class="header__right__widget_me">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li><a href="#"><span class="icon_heart_alt"></span>
+                                <div class="tip">2</div>
+                            </a></li>
+                            <li><a th:href="@{/home/cart}"><span class="icon_bag_alt"></span>
+                                <div class="tip">2</div>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open_me">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+
+        <!--Modal-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <th:block th:if="${ account != null}">
+                        <form th:object="${account}" method="post" th:action="@{/edit_profile}" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <label class="form-label" >Photo</label>
+                                <div class="card" >
+                                    <th:block th:if="*{photo != null}">
+                                        <img th:src="@{/uploads/UserAvatar/{photo}(photo=*{photo})}" class="card-img-top" alt="..." style="width: 250px; height: 200px ; margin-left: 100px">
+                                    </th:block>
+                                    <th:block th:unless="*{photo != null}">
+                                        <p>Không có Hình</p>
+                                    </th:block>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <input class="form-control" type="file" id="formFile" name="file">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label  class="form-label">Username</label>
+                                    <input  th:value="*{username}" th:field="*{username}" type="text" class="form-control" id="Fullname" aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Fullname" class="form-label">Fullname</label>
+                                    <input  th:value="*{fullname}" th:field="*{fullname}" type="text" class="form-control" id="Fullname" aria-describedby="emailHelp">
+                                    <!--                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Email" class="form-label">Email</label>
+                                    <input th:value="*{email}" th:field="*{email}" type="email" class="form-control" id="Email">
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save changes">
+                            </div>
+                        </form>
+                    </th:block>
+                 </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+</th:block>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="link_head">
+        <meta charset="UTF-8">
+        <meta name="description" content="Ashion Template">
+        <meta name="keywords" content="Ashion, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Ashion | Template</title>
+        <link rel="icon" type="image/png" th:href="@{/img/store.ico}" />
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+
+        <!-- Css Styles -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+        <!-- Sweet alert   -->
+        <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js
+    "></script>
+        <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css
+    " rel="stylesheet">
+        <!-- font-awesome  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- link csss-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <style>
+            .dropdown_me {
+                display: none;
+                position: absolute;
+                z-index: 10;
+                background-color: white;
+                text-align: left;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                left: 77px;
+                list-style: none;
+            }
+
+            .btn_mes:hover .dropdown_me {
+                display: block;
+
+            }
+
+            .dropdown_me a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown_me a:hover {
+                background-color: #f1f1f1
+            }
+
+        </style>
+
+    </th:block>
+</html>
